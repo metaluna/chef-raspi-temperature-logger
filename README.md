@@ -1,4 +1,4 @@
-# Piaware-Raspbian Cookbook
+# Log Temperature Cookbook
 
 This cookbook will install a temperature logger on a Raspberry Pi running Raspbian Stretch.
 
