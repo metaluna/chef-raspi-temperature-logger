@@ -6,29 +6,27 @@
 
 return unless node['platform'] == 'raspbian'
 
-app_user = 'root'
-app_group = 'root'
+config = node['temperature_log']
 install_dir = '/usr/local/bin'
-log_dir = '/var/log/temperature'
 logrotate_dir = '/etc/logrotate.d'
 script_name = 'log_temp.sh'
 log_name = 'temperature.log'
 
 # Create log directories
-[log_dir, "#{log_dir}/archive"].each do |dir|
+[config['log_dir'], "#{config['log_dir']}/archive"].each do |dir|
   directory dir do
-    owner app_user
-    group app_group
+    owner config['user']
+    group config['group']
     mode '0755'
   end
 end
 
 template "#{install_dir}/#{script_name}" do
   source "#{script_name}.erb"
-  owner app_user
-  group app_group
+  owner config['user']
+  group config['group']
   mode '0750'
-  variables log_path: "#{log_dir}/#{log_name}"
+  variables log_path: "#{config['log_dir']}/#{log_name}"
 end
 
 template "#{logrotate_dir}/temperature" do
@@ -36,13 +34,12 @@ template "#{logrotate_dir}/temperature" do
   owner 'root'
   group 'root'
   mode '0644'
-  variables log_dir: log_dir, log_name: log_name
+  variables log_dir: config['log_dir'], log_name: log_name, keep_log_count: config['keep_log_count']
 end
 
 
 cron "[temperature_log] Log temperature" do
-  user app_user
-  minute '5'
+  user config['user']
+  minute config['log_interval']
   command "#{install_dir}/#{script_name}"
 end
-

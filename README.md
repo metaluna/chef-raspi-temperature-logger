@@ -22,11 +22,16 @@ This includes a config file for logrotate keeping logs of the last 30 days in /v
 
 ## Attributes
 
-- none
+- `node['temperature_log']['user']` - The owner of the installed files (default: root)
+- `node['temperature_log']['group']` - The group of the installed files (default: root)
+- `node['temperature_log']['log_dir']` - The path to the log directory (default: /var/log/temperature)
+- `node['temperature_log']['log_interval']` - The interval between to logging entries in minutes (default: 5)
+- `node['temperature_log']['keep_log_count']` - The number of logs to keep in days (default: 30)
 
 ## Templates
 
-- none
+- `logrotate.d\temperature.erb` - The logrotate config file. Expects the variables `log_dir`, `log_name`, and `keep_log_count`
+- `log_temp.sh` - The actual logging script. Expects the variable `log_path` containing the directory and file name of the log
 
 ## Cookbook Files
 
