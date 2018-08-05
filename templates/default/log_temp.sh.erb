@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+LOG_FILE=<%= @log_path %>
+NOW=$(/bin/date +"%Y-%m-%dT%TZ")
+TEMP=$(/opt/vc/bin/vcgencmd measure_temp)
+echo "${NOW} ${TEMP}" >> $LOG_FILE

@@ -1,0 +1,9 @@
+<%= @log_dir %>/<%= @log_name %> {
+  daily
+  compress
+  rotate 30
+  dateext
+  dateyesterday
+  copytruncate
+  olddir <%= @log_dir %>/archive
+}
