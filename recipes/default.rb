@@ -40,6 +40,6 @@ end
 
 cron "[temperature_log] Log temperature" do
   user config['user']
-  minute config['log_interval']
+  minute "*/#{config['log_interval']}"
   command "#{install_dir}/#{script_name}"
 end

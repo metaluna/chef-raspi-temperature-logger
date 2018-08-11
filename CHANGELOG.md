@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## UNRELEASED
+- Fix cronjob interval
+
 ## 0.2.0 [2018-08-05]
 - Extract multiple variables to attributes 
 
