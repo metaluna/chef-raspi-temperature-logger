@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## UNRELEASED
+## 0.2.1 [2018-08-11]
 - Fix cronjob interval
 
 ## 0.2.0 [2018-08-05]
